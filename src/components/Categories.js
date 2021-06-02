@@ -58,7 +58,9 @@ function Categories() {
                       d={category.svgPath}
                     />
                   </svg>
-                  <p className="leading-relaxed capitalize">{category.name}</p>
+                  <p className="leading-relaxed capitalize sm:text-lg text-xs">
+                    {category.name}
+                  </p>
                 </div>
               );
             })}

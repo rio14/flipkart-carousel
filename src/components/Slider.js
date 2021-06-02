@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { SliderData } from "./SliderData";
-import "./index.css";
 function Slider() {
   const [current, setCurrent] = useState(0);
   const length = SliderData.length;
@@ -14,8 +13,8 @@ function Slider() {
   };
 
   return (
-    <section className="slider">
-      <div className="left-arrow">
+    <section className="flex h-72 w-full bg-gray-300 py-4 px-2 my-6  justify-center items-center relative overflow-hidden">
+      <div className="absolute h-5 w-2 left-0 ml-4 z-10 text-5xl cursor-pointer select-none text-white">
         <svg
           onClick={prevSlide}
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +31,7 @@ function Slider() {
           />
         </svg>
       </div>
-      <div className="right-arrow">
+      <div className="absolute right-0 mr-4 z-10 text-5xl cursor-pointer select-none text-white">
         <svg
           onClick={nextSlide}
           xmlns="http://www.w3.org/2000/svg"
@@ -52,11 +51,19 @@ function Slider() {
       {SliderData.map((slide, index) => {
         return (
           <div
-            className={index === current ? "slide active" : "slide"}
+            className={
+              index === current
+                ? "opacity-100 duration-100 ease-in scale-105"
+                : "opacity-0 duration-100"
+            }
             key={index}
           >
             {index === current && (
-              <img src={slide.image} alt="slides" className="image" />
+              <img
+                src={slide.image}
+                alt="slides"
+                className="h-64 w-full object-center bg-cover shadow"
+              />
             )}
           </div>
         );
