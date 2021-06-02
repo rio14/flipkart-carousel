@@ -12,6 +12,10 @@ function Slider() {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
+  setTimeout(() => {
+    nextSlide();
+  }, 3 * 1000);
+
   return (
     <section className="flex h-72 w-full bg-gray-300 py-4 px-2 my-6  justify-center items-center relative overflow-hidden">
       <div className="absolute h-5 w-2 left-0 ml-4 z-10 text-5xl cursor-pointer select-none text-white">
