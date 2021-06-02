@@ -6,7 +6,7 @@ function Slider() {
 
   const nextSlide = useCallback(() => {
     setCurrent(current === length - 1 ? 0 : current + 1);
-  });
+  }, [current, length]);
 
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
