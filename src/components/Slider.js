@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SliderData } from "./SliderData";
 function Slider() {
   const [current, setCurrent] = useState(0);
   const length = SliderData.length;
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrent(current === length - 1 ? 0 : current + 1);
-  };
+  });
 
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  setTimeout(() => {
-    nextSlide();
-  }, 3 * 1000);
+  const timeoutRef = useRef(null);
+
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(() => {
+      nextSlide();
+    }, 3 * 1000);
+
+    return () => {
+      resetTimeout();
+    };
+  }, [current, nextSlide]);
 
   return (
     <section className="flex h-72 w-full bg-gray-300 py-4 px-2 my-6  justify-center items-center relative overflow-hidden">
